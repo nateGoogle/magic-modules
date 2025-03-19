@@ -441,6 +441,36 @@ properties:
               Any user-facing error message should be localized and sent in
               the google.rpc.Status.details field, or localized by the client.
             output: true
+  - name: 'zoneStorageEncryption'
+    type: NestedObject
+    description: |
+      Zone storage encryption options. This field is only used when
+      enabling CMEK for zone storage.
+    default_from_api: true
+    properties:
+      - name: 'kmsKey'
+        type: String
+        description: |
+          The Cloud KMS CryptoKey e.g.
+          projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}
+          to use for encrypting the zone storage root key. If not specified, a
+          Google-managed key will be used instead.
+        default_from_api: true
+      - name: 'kmsKeyActiveVersion'
+        type: String
+        description: |
+          The Cloud KMS CryptoKeyVersion currently in use for encrypting the zone storage
+          root key. Only applicable if kms_key is set.
+        output: true
+      - name: 'resourceState'
+        type: enum
+        description: |
+          The current resource state of the CMEK.
+        output: true
+        enum_values:
+          - 'RESOURCE_STATE_UNSPECIFIED'
+          - 'RESOURCE_STATE_LOCK_DOWN'
+          - 'RESOURCE_STATE_LOCK_DOWN_PENDING'
   - name: 'status'
     type: String
     description: |
