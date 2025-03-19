@@ -65,6 +65,8 @@ examples:
     vars:
       edgecontainer_cluster_name: 'local-control-plane-cluster'
     exclude_test: true
+  - name: 'edgecontainer_cluster_with_zone_storage_cmek'
+    primary_resource_id: 'default'
 parameters:
   - name: 'location'
     type: String
